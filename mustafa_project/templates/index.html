@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mustafa Khan - Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+    .chat-container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .question {
+      background-color: #e0e0e0;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .response {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="question" onclick="getDetails()">Mustafa Khan</div>
+    <div class="response" id="response-box"></div>
+  </div>
+
+  <script>
+    function getDetails() {
+      fetch('/get_details')
+        .then(res => res.json())
+        .then(data => {
+          const box = document.getElementById("response-box");
+          box.innerHTML = data.details;
+          box.style.display = "block";
+        });
+    }
+  </script>
+</body>
+</html>
